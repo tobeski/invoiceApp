@@ -1,0 +1,55 @@
+<html ng-app="invoicingApp" ng-cloak>
+	<head>
+		<link href="styles/vendor/bootstrap.min.css" rel="stylesheet">
+		<link href="styles/vendor/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="styles/style.css" />
+		
+		<script src="js/external/jquery.js"></script>
+		<script src="js/external/angular.min.js"></script>
+	</head>
+	<body class="js" ng-controller="mainCtrl">
+		<h1>Invoicing Application</h1>
+		<h2>Upload time-sheet and get invoice</h2>
+		<form action="#" id="fileUpload">
+		  <div class="input-file-container">  
+			<input class="input-file" id="my-file" type="file" name="multipartFile" ng-model="fileModel">
+			<label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label>
+		  </div>
+		  <p class="file-return">...</p><input type="button" value="Upload" ng-click="uploadFile()" style="margin:auto" accept="text/csv" /><span class="spinner-container" us-spinner="{color: '#39D2B4'}" spinner-key="upload-spinner"></span>
+		  
+		</form>
+		
+		<div class="output" ng-if="file.fileName">
+			<span style="cursor:pointer" ng-click="openFile(file.fileName)"><span class="fa fa-download"></span>{{file.fileName}}</span>
+		</div>
+		
+		<script src="js/external/angular-route.min.js"></script>
+		<script src="js/external/angular-spinner.min.js"></script>
+		<script src="js/external/spin.min.js"></script>
+		<script src="js/external/bootstrap.min.js"></script>
+		<script src="js/external/angular-file-saver.min.js"></script>
+		<script src="js/external/Blob.js"></script>
+		<script src="js/external/FileSaver.min.js"></script>
+		<script src="js/app.js"></script>
+		<script>
+			document.querySelector("html").classList.add('js');
+
+			var fileInput  = document.querySelector( ".input-file" ),  
+				button     = document.querySelector( ".input-file-trigger" ),
+				the_return = document.querySelector(".file-return");
+				  
+			button.addEventListener( "keydown", function( event ) {  
+				if ( event.keyCode == 13 || event.keyCode == 32 ) {  
+					fileInput.focus();  
+				}  
+			});
+			button.addEventListener( "click", function( event ) {
+			   fileInput.focus();
+			   return false;
+			});  
+			fileInput.addEventListener( "change", function( event ) {  
+				the_return.innerHTML = this.value;  
+			});  
+		</script>
+	</body>
+</html>
