@@ -29,7 +29,13 @@ public class InvoiceService {
 
 
     public String generateInvoices(MultipartFile multipartFile) throws FileUploadException, IOException {
-
+        File timeSheetDirectory = new File(timeSheetDataFolder);
+        File invoiceDirectory = new File(dataFolderPath);
+        if (!timeSheetDirectory.exists()) {
+            timeSheetDirectory.mkdir();
+        } if (!invoiceDirectory.exists()) {
+            invoiceDirectory.mkdir();
+        }
         Instant t = Instant.now();
         String fileName = "INVOICE-" + t.toEpochMilli() + ".zip";
         String zipFile = timeSheetDataFolder + File.separator + fileName;
